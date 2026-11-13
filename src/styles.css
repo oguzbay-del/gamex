@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #16131f;
+  --color-cream: #f4efe4;
+  --color-amber: #e8a317;
+  --color-coral: #e15b4a;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --radius-card: 1.15rem;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    padding-inline: 1rem;
+    font-weight: 600;
+  }
+
+  .btn-primary {
+    background: var(--color-amber);
+    color: var(--color-ink);
+  }
+
+  .btn-ghost {
+    border: 1px solid color-mix(in oklab, var(--color-cream) 22%, transparent);
+    background: transparent;
+    color: var(--color-cream);
+  }
+
+  html,
+  body {
+    height: 100%;
+    background: var(--color-ink);
+    color: var(--color-cream);
+  }
+
+  body {
+    margin: 0;
+    overflow: hidden;
+    font-family: var(--font-sans);
+  }
+
+  #root,
+  body > div:first-child {
+    min-height: 100%;
+  }
+}

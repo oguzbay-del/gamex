@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Zirve Koşusu",
+      "hasCanvas": true,
+      "bodyTextLen": 463,
+      "bodyTextHash": "8bf6da8ff1d2450fcd390f236e8b70ae59beb16437b44eb4f477a6f870008bfb",
+      "bodyTextPrefix": "ÜÇ PARKUR Zirve Koşusu Koş, zıpla, havada bir kez daha zıpla. Fe",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Zirve Koşusu",
+      "hasCanvas": true,
+      "bodyTextLen": 463,
+      "bodyTextHash": "8bf6da8ff1d2450fcd390f236e8b70ae59beb16437b44eb4f477a6f870008bfb",
+      "bodyTextPrefix": "ÜÇ PARKUR Zirve Koşusu Koş, zıpla, havada bir kez daha zıpla. Fe",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

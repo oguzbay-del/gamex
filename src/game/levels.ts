@@ -1,0 +1,146 @@
+import type { Level } from "@/game/types";
+
+const GROUND = 640;
+
+export const LEVELS: Level[] = [
+  {
+    id: "ilk",
+    name: "İlk Basamak",
+    blurb: "Koş, zıpla, paraları topla",
+    width: 3180,
+    height: 920,
+    spawn: { x: 36, y: GROUND },
+    solids: [
+      { x: 0, y: GROUND, w: 580, h: 220 },
+      { x: 690, y: GROUND, w: 340, h: 220 },
+      { x: 1120, y: 556, w: 160, h: 22 },
+      { x: 1360, y: 472, w: 170, h: 22 },
+      { x: 1600, y: GROUND, w: 230, h: 220 },
+      { x: 2180, y: GROUND, w: 500, h: 220 },
+      { x: 2760, y: 548, w: 150, h: 22 },
+      { x: 2980, y: 460, w: 180, h: 24 },
+    ],
+    oneways: [],
+    movers: [{ x: 1860, y: 616, w: 128, h: 18, axis: "x", amp: 100, period: 3.6, phase: 0 }],
+    coins: [
+      { x: 180, y: 586 },
+      { x: 620, y: 548 },
+      { x: 655, y: 490 },
+      { x: 1185, y: 508 },
+      { x: 1440, y: 424 },
+      { x: 1440, y: 292 },
+      { x: 1960, y: 586 },
+      { x: 3060, y: 408 },
+    ],
+    spikes: [
+      { x: 2360, y: 612, w: 92, h: 28 },
+      { x: 2520, y: 612, w: 64, h: 28 },
+    ],
+    checkpoints: [
+      { x: 760, y: GROUND },
+      { x: 2220, y: GROUND },
+    ],
+    flag: { x: 3088, y: 460 },
+    hints: [
+      { x: 70, y: 586, text: "A D koş" },
+      { x: 250, y: 586, text: "Boşluk zıpla" },
+      { x: 1140, y: 508, text: "Basılı tut" },
+      { x: 1380, y: 390, text: "Bir kez daha" },
+    ],
+  },
+  {
+    id: "cift",
+    name: "Çift Nefes",
+    blurb: "Duvarı ancak ikinci zıplama aşar",
+    width: 3240,
+    height: 920,
+    spawn: { x: 36, y: GROUND },
+    solids: [
+      { x: 0, y: GROUND, w: 500, h: 240 },
+      { x: 500, y: 508, w: 168, h: 380 },
+      { x: 748, y: 508, w: 190, h: 22 },
+      { x: 1040, y: 596, w: 210, h: 22 },
+      { x: 1360, y: GROUND, w: 340, h: 240 },
+      { x: 1760, y: GROUND, w: 360, h: 240 },
+      { x: 2100, y: 552, w: 200, h: 22 },
+      { x: 2790, y: 286, w: 300, h: 26 },
+    ],
+    oneways: [
+      { x: 2380, y: 468, w: 140, h: 14 },
+      { x: 2600, y: 376, w: 150, h: 14 },
+    ],
+    movers: [{ x: 1888, y: 524, w: 120, h: 18, axis: "y", amp: 46, period: 3.1, phase: 0.4 }],
+    coins: [
+      { x: 160, y: 586 },
+      { x: 570, y: 456 },
+      { x: 830, y: 456 },
+      { x: 1120, y: 544 },
+      { x: 1480, y: 586 },
+      { x: 1960, y: 460 },
+      { x: 2920, y: 236 },
+    ],
+    spikes: [{ x: 1848, y: 612, w: 240, h: 28 }],
+    checkpoints: [
+      { x: 1460, y: GROUND },
+      { x: 2140, y: 552 },
+    ],
+    flag: { x: 2980, y: 286 },
+    hints: [
+      { x: 80, y: 586, text: "Sağ + iki zıpla" },
+      { x: 1780, y: 586, text: "Tahtaya bin" },
+      { x: 2400, y: 430, text: "İnce zemin" },
+    ],
+  },
+  {
+    id: "asili",
+    name: "Asılı Taşlar",
+    blurb: "Hareketli zeminler ve dikenli kısayol",
+    width: 3840,
+    height: 920,
+    spawn: { x: 28, y: GROUND },
+    solids: [
+      { x: 0, y: GROUND, w: 300, h: 48 },
+      { x: 420, y: 580, w: 110, h: 20 },
+      { x: 640, y: 500, w: 120, h: 20 },
+      { x: 860, y: 580, w: 110, h: 20 },
+      { x: 1520, y: 520, w: 190, h: 22 },
+      { x: 2080, y: 500, w: 180, h: 22 },
+      { x: 2400, y: GROUND, w: 280, h: 80 },
+      { x: 2760, y: 552, w: 130, h: 20 },
+      { x: 2960, y: 464, w: 130, h: 20 },
+      { x: 3160, y: 376, w: 150, h: 22 },
+      { x: 3580, y: 270, w: 200, h: 26 },
+    ],
+    oneways: [],
+    movers: [
+      { x: 1080, y: 560, w: 108, h: 18, axis: "y", amp: 50, period: 2.9, phase: 0 },
+      { x: 1300, y: 560, w: 108, h: 18, axis: "y", amp: 50, period: 2.9, phase: Math.PI },
+      { x: 1800, y: 540, w: 120, h: 18, axis: "x", amp: 70, period: 3.4, phase: 0.3 },
+      { x: 3380, y: 360, w: 110, h: 18, axis: "y", amp: 50, period: 2.8, phase: 0.5 },
+    ],
+    coins: [
+      { x: 160, y: 586 },
+      { x: 470, y: 530 },
+      { x: 690, y: 452 },
+      { x: 910, y: 530 },
+      { x: 1600, y: 470 },
+      { x: 2520, y: 580 },
+      { x: 3020, y: 416 },
+      { x: 3660, y: 220 },
+    ],
+    spikes: [{ x: 2480, y: 612, w: 120, h: 28 }],
+    checkpoints: [
+      { x: 1560, y: 520 },
+      { x: 3200, y: 376 },
+    ],
+    flag: { x: 3688, y: 270 },
+    hints: [
+      { x: 36, y: 586, text: "Zamanla zıpla" },
+      { x: 2420, y: 586, text: "Dikenlerin üstü" },
+    ],
+  },
+];
+
+export function emptyRecords() {
+  return LEVELS.map(() => ({ bestCoins: 0, bestTime: null as number | null, cleared: false }));
+}
