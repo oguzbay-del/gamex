@@ -94,7 +94,7 @@ export class GameSim {
   runPhase = 0;
   keys = new Set<string>();
   injected: Set<string> | null = null;
-  touch = { left: false, right: false, jump: false };
+  touch = { left: false, right: false, jump: false, drop: false };
   private coyote = COYOTE;
   private buffer = 0;
   private jumpPrev = false;
@@ -349,7 +349,7 @@ export class GameSim {
   }
 
   private readDrop() {
-    return this.down("KeyS") || this.down("ArrowDown") || this.readPad().down;
+    return this.down("KeyS") || this.down("ArrowDown") || this.touch.drop || this.readPad().down;
   }
 
   private readPad() {
