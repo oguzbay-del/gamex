@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
+  ChevronDown,
   ChevronRight,
   Coins,
   Flag,
@@ -171,12 +172,6 @@ export function PlatformGame() {
     if (screen === "play" && sim.mode === "pause") sim.mode = "play";
   }, [screen]);
 
-  function persist(next: Save) {
-    setSave(next);
-    writeSave(next);
-    if (sfxRef.current) sfxRef.current.setMuted(next.mute);
-  }
-
   function boot(index: number) {
     const sfx = sfxRef.current ?? new Sfx();
     sfxRef.current = sfx;
@@ -224,6 +219,8 @@ export function PlatformGame() {
 
   const record = save?.levels[levelIndex];
   const showTouch = coarse && (screen === "play" || screen === "pause");
+  const isLastLevel = levelIndex >= LEVELS.length - 1;
+  const allCleared = save?.levels.every((r) => r.cleared) ?? false;
 
   return (
     <main className="relative h-dvh overflow-hidden bg-ink text-cream select-none">
@@ -265,12 +262,15 @@ export function PlatformGame() {
 
       {showTouch && (
         <div className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between px-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
-          <div className="flex gap-3">
+          <div className="flex gap-2">
             <HoldButton label="Sol" onHold={(v) => simRef.current && (simRef.current.touch.left = v)}>
               <ChevronRight className="size-7 rotate-180" />
             </HoldButton>
             <HoldButton label="Sağ" onHold={(v) => simRef.current && (simRef.current.touch.right = v)}>
               <ChevronRight className="size-7" />
+            </HoldButton>
+            <HoldButton label="İn" onHold={(v) => simRef.current && (simRef.current.touch.drop = v)}>
+              <ChevronDown className="size-7" />
             </HoldButton>
           </div>
           <HoldButton
@@ -338,7 +338,7 @@ export function PlatformGame() {
             <div className="rounded-card border border-cream/15 bg-ink/60 px-4 py-3 text-sm leading-relaxed text-cream/80">
               <p className="font-display text-base text-cream">Kontroller</p>
               <p className="mt-1">A D veya oklar koşar. W, yukarı ok ya da boşluk zıplatır. Basılı tutunca daha yükseğe çıkar, havada bir kez daha bas.</p>
-              <p className="mt-1">S veya aşağı, ince zeminlerden düşürür. Ölünce son fenerden devam edersin.</p>
+              <p className="mt-1">S veya aşağı (telefonda ↓), ince zeminlerden düşürür. Ölünce son fenerden devam edersin.</p>
             </div>
           </div>
         </section>
@@ -370,7 +370,10 @@ export function PlatformGame() {
       )}
 
       {screen === "win" && (
-        <Overlay title="Zirve senin" lede={`${level.name} bitti`}>
+        <Overlay
+          title={isLastLevel && allCleared ? "Üç zirve senin" : "Zirve senin"}
+          lede={isLastLevel && allCleared ? "Tüm parkurlar bitti" : `${level.name} bitti`}
+        >
           <p className="flex items-center justify-center gap-4 text-sm text-cream/80">
             <span className="inline-flex items-center gap-1">
               <Coins className="size-4 text-amber" aria-hidden />
@@ -385,9 +388,14 @@ export function PlatformGame() {
               {record?.bestTime != null ? formatTime(record.bestTime) : "ilk"}
             </span>
           </p>
-          {levelIndex < LEVELS.length - 1 && (
+          {!isLastLevel && (
             <button type="button" className="btn-primary" onClick={() => boot(levelIndex + 1)}>
               Sonraki parkur
+            </button>
+          )}
+          {isLastLevel && (
+            <button type="button" className="btn-primary" onClick={() => setScreen("select")}>
+              Seviyeler
             </button>
           )}
           <button
@@ -403,9 +411,11 @@ export function PlatformGame() {
             <RotateCcw className="size-5" aria-hidden />
             Tekrar koş
           </button>
-          <button type="button" className="btn-ghost" onClick={() => setScreen("select")}>
-            Seviyeler
-          </button>
+          {!isLastLevel && (
+            <button type="button" className="btn-ghost" onClick={() => setScreen("select")}>
+              Seviyeler
+            </button>
+          )}
         </Overlay>
       )}
     </main>
